@@ -1,0 +1,14 @@
+---
+
+- name: Setting up cron jobs
+  cron: >
+    name="{{ item.name }}"
+    day={{ item.day|default('*') }}
+    hour={{ item.hour|default('*') }}
+    minute={{ item.minute|default('*') }}
+    month={{ item.month|default('*') }}
+    weekday={{ item.weekday|default('*') }}
+    job="{{ item.job }}"
+    state={{ item.state|default('present') }}
+  with_items: elao_cron
+  when: elao_cron|length > 0
