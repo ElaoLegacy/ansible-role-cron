@@ -1,14 +1,17 @@
 ---
 
-- name: Setting up cron jobs
+- name: jobs
   cron: >
-    name="{{ item.name }}"
-    day={{ item.day|default('*') }}
-    hour={{ item.hour|default('*') }}
+    name={{ item.name }}
+    job="{{ item.job }}"
     minute={{ item.minute|default('*') }}
+    hour={{ item.hour|default('*') }}
+    day={{ item.day|default('*') }}
     month={{ item.month|default('*') }}
     weekday={{ item.weekday|default('*') }}
-    job="{{ item.job }}"
+    cron_file={{ item.file|default(elao_cron_file if elao_cron_file is defined else null) }}
+    user={{ item.user|default('root') }}
     state={{ item.state|default('present') }}
-  with_items: elao_cron
-  when: elao_cron|length > 0
+  with_items: elao_cron_jobs
+  when: elao_cron_jobs|length > 0
+  sudo: yes
