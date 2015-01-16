@@ -9,8 +9,8 @@
     day={{ item.day|default('*') }}
     month={{ item.month|default('*') }}
     weekday={{ item.weekday|default('*') }}
-    cron_file={{ item.file|default(elao_cron_file if elao_cron_file is defined else null) }}
-    user={{ item.user|default('root') }}
+    cron_file={{ item.file|default(elao_cron_file) }}
+    user={{ item.user|default(elao_cron_user) }}
     state={{ item.state|default('present') }}
   with_items: elao_cron_jobs
   when: elao_cron_jobs|length > 0

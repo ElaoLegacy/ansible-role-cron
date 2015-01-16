@@ -1,3 +1,5 @@
 ---
 
 elao_cron_jobs: []
+elao_cron_file: null
+elao_cron_user: "{{ elao_base_user }}"
