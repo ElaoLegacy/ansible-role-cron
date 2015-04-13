@@ -13,5 +13,7 @@
     user={{ item.user|default(elao_cron_user) }}
     state={{ item.state|default('present') }}
   with_items: elao_cron_jobs
+  notify:
+    - cron restart
   when: elao_cron_jobs|length > 0
   sudo: yes
