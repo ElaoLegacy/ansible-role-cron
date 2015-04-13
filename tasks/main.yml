@@ -2,7 +2,7 @@
 
 - name: jobs
   cron: >
-    name={{ item.name }}
+    name="{{ item.name }}"
     job="{{ item.job }}"
     minute={{ item.minute|default('*') }}
     hour={{ item.hour|default('*') }}
@@ -13,5 +13,7 @@
     user={{ item.user|default(elao_cron_user) }}
     state={{ item.state|default('present') }}
   with_items: elao_cron_jobs
+  notify:
+    - cron restart
   when: elao_cron_jobs|length > 0
   sudo: yes
