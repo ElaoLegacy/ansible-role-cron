@@ -2,7 +2,7 @@
 
 - name: jobs
   cron: >
-    name={{ item.name }}
+    name="{{ item.name }}"
     job="{{ item.job }}"
     minute={{ item.minute|default('*') }}
     hour={{ item.hour|default('*') }}
